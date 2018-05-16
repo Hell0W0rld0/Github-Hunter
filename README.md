@@ -44,3 +44,5 @@ Befor use it,you must change parameters in `info.ini.example`,then change filena
 ### Keyword and Payloads
 The keyword is main keyword,such as your company name,email,etc.<br>
 The payloads will be used to search sensitive informtion on results when main keyword searching finished.The Github Hunter will search main keyword on Github then use payloads to locate projects' urls which include sensitive information,it will send email to receivers at last.
+## Run
+`python GithubHunter.py`
