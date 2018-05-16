@@ -15,31 +15,31 @@ Notice:Github Hunter only supports Python3.x, if you are using Python2.x,do some
 ## Settings
 Befor use it,you must change parameters in `info.ini.example`,then change filename(just delete `.example`)
 ### Example
-`[KEYWORD]`
-`keyword = your main keyword here`
-
-`[EMAIL]`
-`host = Email server`
-`user = Email User`
-`password = Email password`
-
-`[SENDER]`
-`sender = The email sender`
-
-`[RECEIVER]`
-`receiver1 = Email receiver No.1`
-`receiver2 = Email receiver No.2`
-
-`[Github]`
-`user = Github Username`
-`password = Github Password`
-
-`[PAYLOADS]`
-`p1 = Payload 1`
-`p2 = Payload 2`
-`p3 = Payload 3`
-`p4 = Payload 4`
-`p5 = Payload 5`
+`[KEYWORD]`<br>
+`keyword = your main keyword here`<br>
+<br>
+`[EMAIL]`<br>
+`host = Email server`<br>
+`user = Email User`<br>
+`password = Email password`<br>
+<br>
+`[SENDER]`<br>
+`sender = The email sender`<br>
+<br>
+`[RECEIVER]`<br>
+`receiver1 = Email receiver No.1`<br>
+`receiver2 = Email receiver No.2`<br>
+<br>
+`[Github]`<br>
+`user = Github Username`<br>
+`password = Github Password`<br>
+<br>
+`[PAYLOADS]`<br>
+`p1 = Payload 1`<br>
+`p2 = Payload 2`<br>
+`p3 = Payload 3`<br>
+`p4 = Payload 4`<br>
+`p5 = Payload 5`<br>
 `p6 = Payload 6`<br>
 ### Keyword and Payloads
 The keyword is main keyword,such as your company name,email,etc.<br>
