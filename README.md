@@ -43,7 +43,7 @@ Befor use it,you must change parameters in `info.ini.example`,then change filena
 `p6 = Payload 6`<br>
 ### Keyword and Payloads
 The keyword is main keyword,such as your company name,email,etc.<br>
-The payloads searching is based on main keyword's results.You can customize your payloads,the more you add, the more sensitive information it will find.
+The payloads searching is based on main keyword's results.You can customize your payloads,the more you add, the more sensitive information will be found.
 ## Run
 `python GithubHunter.py`<br>
 You will receive a .csv file and emails when application complete.<br>
