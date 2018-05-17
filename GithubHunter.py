@@ -88,7 +88,7 @@ def hunter(gUser,gPass,keyword,payloads):#根据关键词获取想要查询的�
                 code = requests.get(url).text
                 for payload in payloads:
                     if payload in code:
-                        leak_url = 'https://github.com'+ raw_url + '\r\n\r\n\r\n'
+                        leak_url = '命中的Payload为：'+payload+'\r\n'+'https://github.com'+ raw_url + '\r\n\r\n\r\n'
                         sensitive_list.append(leak_url)
 
         csv_file.close()
