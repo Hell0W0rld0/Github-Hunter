@@ -106,7 +106,7 @@ def send_mail(host,username,password,sender,receivers):#自动发送邮件
         return formataddr((Header(name,'utf-8').encode(),addr))
 
     message = MIMEMultipart()
-    message['From'] = _format_addr('小雨点安全监控<%s>' % sender)
+    message['From'] = _format_addr('Github安全监控<%s>' % sender)
     message['To'] = ','.join(receivers)
     subject = 'Github信息泄露报表'
     message['Subject'] = Header(subject,'utf-8').encode()
@@ -140,7 +140,7 @@ def send_warning(host,username,password,sender,receivers,content):
         return formataddr((Header(name,'utf-8').encode(),addr))
 
     msg = MIMEMultipart()
-    msg['From'] = _format_addr('小雨点安全监控<%s>' % sender)
+    msg['From'] = _format_addr('Github安全监控<%s>' % sender)
     msg['To'] = ','.join(receivers)
     Subject = 'Github敏感信息泄露通知'
     msg['Subject'] = Header(Subject,'utf-8').encode()
