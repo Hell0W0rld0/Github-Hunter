@@ -78,10 +78,10 @@ def hunter(gUser,gPass,keyword,payloads):#根据关键词获取想要查询的�
             resp = s.get(search_code)
             results_code = resp.text
             dom_tree_code = etree.HTML(results_code)
-            Urls = dom_tree_code.xpath('//div[@class="d-inline-block col-10"]/a[2]/@href')
-            users = dom_tree_code.xpath('//a[@class="text-bold"]/text()')
+            Urls = dom_tree_code.xpath('//div[@class="flex-auto min-width-0 col-10"]/a[2]/@href')
+            users = dom_tree_code.xpath('//div[@class="flex-auto min-width-0 col-10"]/a[1]/text()')
             datetime = dom_tree_code.xpath('//relative-time/text()')
-            filename = dom_tree_code.xpath('//div[@class="d-inline-block col-10"]/a[2]/text()')
+            filename = dom_tree_code.xpath('//div[@class="flex-auto min-width-0 col-10"]/a[2]/text()')
             for i in range(len(Urls)):
                 for Url in Urls:
                     Url = 'https://github.com'+ Url
