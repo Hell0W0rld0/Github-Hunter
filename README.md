@@ -1,5 +1,5 @@
-# Github-Hunter
-This tool is for sensitive information searching on Github.
+# GitHub-Hunter
+This tool is for sensitive information searching on GitHub.
 ## Requirements
 Python 3.x <br>
 ## OS Support
