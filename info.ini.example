@@ -1,5 +1,9 @@
 [KEYWORD]
-keyword = your main keyword here
+keyword1 = your keyword here
+keyword2 = your keyword here
+keyword3 = your keyword here
+...
+etc
 
 [EMAIL]
 host = Email server
