@@ -1,5 +1,6 @@
 # Github-Hunter
 This tool is for sensitive information searching on Github.
+It's new version of this tool.
 ## Requirements
 Python 3.x <br>
 ## OS Support
@@ -16,7 +17,10 @@ Notice:Github Hunter only supports Python3.x, if you are using Python2.x,do some
 Befor use it,you must change parameters in `info.ini.example`,then change filename(just delete `.example`)
 ### Example
 `[KEYWORD]`<br>
-`keyword = your main keyword here`<br>
+`keyword1 = your main keyword here`<br>
+`keyword2 = your main keyword here`<br>
+`keyword3 = your main keyword here`<br>
+`...etc`<br>
 <br>
 `[EMAIL]`<br>
 `host = Email server`<br>
@@ -42,10 +46,10 @@ Befor use it,you must change parameters in `info.ini.example`,then change filena
 `p5 = Payload 5`<br>
 `p6 = Payload 6`<br>
 ### Keyword and Payloads
-The keyword is main keyword,such as your company name,email,etc.<br>
-The payloads searching is based on main keyword's results.You can customize your payloads,the more you add, the more sensitive information will be found.
+You can add many main keywords as you like, but i suggest add 2~5 keywords.<br>
+The tool will combine keyword and payload. So keywords for searching will be "keyword + payload".You can customize your payloads,the more you add, the more sensitive information will be found.
 ## Run
 `python GithubHunter.py`<br>
-You will receive a .csv file and emails when application complete.<br>
-CSV file includes repositories' url、user、upload data、filename which are best match of main keyword.<br>
-The emails will be send contain urls which certainly include sensitive information.
+You will receive emails when application complete.<br>
+There will be a .db file named hunter.db, this baseline for url and code. Do not remove it<br>
+The emails will be send contain urls and code.
