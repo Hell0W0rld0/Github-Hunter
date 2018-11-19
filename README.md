@@ -1,4 +1,4 @@
-# Github-Hunter
+# Github-Hunter v2.1
 This tool is for sensitive information searching on Github.
 It's new version of this tool.
 ## Requirements
