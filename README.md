@@ -53,3 +53,7 @@ The tool will combine keyword and payload. So keywords for searching will be "ke
 You will receive emails when application complete.<br>
 There will be a .db file named hunter.db, this baseline for url and code. Do not remove it<br>
 The emails will be send contain urls and code.
+## Screenshot
+![Running](https://github.com/Hell0W0rld0/Github-Hunter/blob/master/1.jpg)
+<br>
+![Result](https://github.com/Hell0W0rld0/Github-Hunter/blob/master/2.jpg)
