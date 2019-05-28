@@ -1,6 +1,6 @@
 # Github-Hunter v2.1
 This tool is for sensitive information searching on Github.
-It's new version of this tool.
+All New Version Please go to https://github.com/Hell0W0rld0/Github_Hunter_By_Golang
 ## Requirements
 Python 3.x <br>
 ## OS Support
