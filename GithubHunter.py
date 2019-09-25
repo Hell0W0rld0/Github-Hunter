@@ -74,8 +74,8 @@ def hunter(gUser, gPass, keywords):#根据关键词获取想要查询的内容
         codes = []
         tUrls = []
         #新加入2条正则匹配，第一条匹配搜索出来的代码部分；第二条则进行高亮显示关键词
-        pattern_code = re.compile(r'<div class="file-box blob-wrapper">(.*?)</div>', re.S)
-        pattern_sub = re.compile(r'<em>', re.S)
+        pattern_code = re.compile(r'<div class="file-box blob-wrapper my-2">(.*?)</div>', re.S)
+        pattern_sub = re.compile(r'''<span class='text-bold'>''', re.S)
         for keyword in keywords:
             for page in tqdm(range(1,7)):
                 #更改搜索排序方式的url，收录可能存在泄漏的url还是使用xpath解析
@@ -84,19 +84,19 @@ def hunter(gUser, gPass, keywords):#根据关键词获取想要查询的内容
                 results_code = resp.text
                 dom_tree_code = etree.HTML(results_code)
                 #获取存在信息泄露的链接地址
-                Urls = dom_tree_code.xpath('//div[@class="flex-auto min-width-0 col-10"]/a[2]/@href')
+                Urls = dom_tree_code.xpath('//div[@class="f4 text-normal"]/a/@href')
                 for url in Urls:
                     url = 'https://github.com' + url
                     tUrls.append(url)
                 #获取代码部分，先获得整个包含泄露代码的最上层DIV对象，再把对象进行字符化，便于使用正则进行匹配泄露代码部分的div
-                results = dom_tree_code.xpath('//div[@class="code-list-item col-12 py-4 code-list-item-public "]')
+                results = dom_tree_code.xpath('//div[@class="hx_hit-code code-list-item d-flex py-4 code-list-item-public "]')
                 for div in results:
                     result = etree.tostring(div, pretty_print=True, method="html")
                     code = str(result, encoding='utf-8')
                     #如果存在<div class="file-box blob-wrapper">此标签则匹配泄露的关键代码部分，不存在则为空。
-                    if '<div class="file-box blob-wrapper">' in code:
+                    if '<div class="file-box blob-wrapper my-2">' in code:
                         data = pattern_code.findall(code)
-                        codes.append(pattern_sub.sub('<em style="color:red">', data[0]))
+                        codes.append(pattern_sub.sub('''<span style="color:red">''', data[0]))
                     else:
                         codes.append(' ')
 
@@ -195,11 +195,14 @@ if __name__ == '__main__':
             payload = keyword.split('+')
             for i in range(0, len(tUrls)):
                 if (payload[0] in codes[i]) and (payload[1] in codes[i]):
+                    format_code = codes[i].replace(payload[0],'<em style="color:red">' + payload[0] + '</em>')
+                    format_code = format_code.replace(payload[1],'<em style="color:red">' + payload[1] + '</em>')
                     #如果数据库中返回的值为空，则说明该条目在数据库中不存在，那么添加到target_codes里面用户发送邮件，并且添加到数据库中
                     if not compare_DB_Url(tUrls[i]):
                         target_codes.append('<br><br><br>' + '链接：' + tUrls[i] + '<br><br>')
-                        target_codes.append('简要代码如下：<br><div style="border:1px solid #bfd1eb;background:#f3faff">' + codes[i] + '</div>')
-                        insert_DB(tUrls[i], codes[i])
+                        target_codes.append('命中关键词: <em style="color:red">' + payload[0] + '</em> and <em style="color:red">' + payload[1] + '</em><br><br>')
+                        target_codes.append('简要代码如下：<br><div style="border:1px solid #bfd1eb;background:#f3faff">' + format_code + '</div>')
+                        insert_DB(tUrls[i], format_code)
     else:
         print("未发现数据库文件，创建并建立基线......")
         for keyword in keywords:
@@ -207,13 +210,16 @@ if __name__ == '__main__':
             for i in range(0, len(tUrls)):
                 #关键词和payload同时存在则加入到target_codes,并写入数据库
                 if (payload[0] in codes[i]) and (payload[1] in codes[i]):
+                    format_code = codes[i].replace(payload[0],'<em style="color:red">' + payload[0] + '</em>')
+                    format_code = format_code.replace(payload[1],'<em style="color:red">' + payload[1] + '</em>')
                     target_codes.append('<br><br><br>' + '链接：' +tUrls[i] + '<br><br>')
-                    target_codes.append('简要代码如下：<br><div style="border:1px solid #bfd1eb;background:#f3faff">' + codes[i] + '</div>')
-                    insert_DB(tUrls[i], codes[i])
+                    target_codes.append('命中关键词: <em style="color:red">' + payload[0] + '</em> and <em style="color:red">' + payload[1] + '</em><br><br>')
+                    target_codes.append('简要代码如下：<br><div style="border:1px solid #bfd1eb;background:#f3faff">' + format_code + '</div>')
+                    insert_DB(tUrls[i], format_code)
     #当target_codes有数据时，则进行邮件预警                
     if target_codes:
         warning = ''.join(target_codes)
-        result = 'Dear all<br><br>发现信息泄露! ' + '一共发现{}条'.format(int(len(target_codes)/2)) + warning
+        result = 'Dear all<br><br>发现信息泄露! ' + '一共发现<em style="color:red"> {} </em>条'.format(int(len(target_codes)/2)) + warning
         send_mail(host, m_User, m_Pass, m_sender, receivers, result)
     else:
         send_mail(host, m_User, m_Pass, m_sender, receivers, message)
