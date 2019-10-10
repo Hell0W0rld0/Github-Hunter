@@ -74,7 +74,7 @@ def hunter(gUser, gPass, keywords):#根据关键词获取想要查询的内容
         codes = []
         tUrls = []
         #新加入2条正则匹配，第一条匹配搜索出来的代码部分；第二条则进行高亮显示关键词
-        pattern_code = re.compile(r'<div class="file-box blob-wrapper my-2">(.*?)</div>', re.S)
+        pattern_code = re.compile(r'<div class="file-box blob-wrapper my-1">(.*?)</div>', re.S)
         pattern_sub = re.compile(r'''<span class='text-bold'>''', re.S)
         for keyword in keywords:
             for page in tqdm(range(1,7)):
@@ -94,7 +94,7 @@ def hunter(gUser, gPass, keywords):#根据关键词获取想要查询的内容
                     result = etree.tostring(div, pretty_print=True, method="html")
                     code = str(result, encoding='utf-8')
                     #如果存在<div class="file-box blob-wrapper">此标签则匹配泄露的关键代码部分，不存在则为空。
-                    if '<div class="file-box blob-wrapper my-2">' in code:
+                    if '<div class="file-box blob-wrapper my-1">' in code:
                         data = pattern_code.findall(code)
                         codes.append(pattern_sub.sub('''<span style="color:red">''', data[0]))
                     else:
