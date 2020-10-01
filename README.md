@@ -1,4 +1,4 @@
-# Github-Hunter v2.3
+# GitHub-Hunter v2.3
 This tool is for sensitive information searching on Github.
 The fast version Please go to https://github.com/Hell0W0rld0/Github_Hunter_By_Golang
 ## Requirements
